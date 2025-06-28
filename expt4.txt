@@ -1,0 +1,107 @@
+Example 1: Find V2f of f = (x² + y² + z²)
+
+WxMaxima Code:
+kill(all)$
+
+load("vect")$
+
+f: (x^2 + y^2 + z^2)^(n/2)$
+
+express(laplacian(f))$
+lapf: ev(%, nouns)$
+
+print("Laplacian of f is:", lapf)$
+
+
+Example 2: Find div(gradf) and Curl(gradf) of f = x3 + y³ +z³-3xyz.
+
+WxMaxima Code:
+
+kill(all)$
+
+load("vect")$
+
+f: x^3 + y^3 + z^3 - 3 * x * y * z$
+
+express(grad(f))$
+grdf: ev(%, nouns)$
+
+express(div(grdf))$
+divofgradf: ev(%, nouns)$
+
+express(curl(grdf))$
+curlofgradf: ev(%, nouns)$
+
+print("Gradient of given scalar point function f is =", grdf)$
+print("Divergence(gradient f) is =", divofgradf)$
+print("Curl(gradient f) is =", curlofgradf)$
+
+Example 3: Find div(curl F) of F = (xy²)i + (2x²yz)j - (3yz²)k.
+
+WxMaxima Code:
+kill(all)$
+
+load("vect")$
+
+F: [x * y^2, 2 * x^2 * y * z, -3 * y * z^2]$
+
+express(curl(F))$
+CurlF: ev(%, nouns)$
+
+express(div(CurlF))$
+divofCurlF: ev(%, nouns)$
+
+print("Curl of given vector point function F is =", CurlF)$
+print("Divergence(CurlF) is =", divofCurlF)$
+
+
+Example 4: Find Grad(divF) of F = xy²i + 2x²yzj-3yz²k
+
+kill(all)$
+
+load("vect")$
+
+F: [x * y^2, 2 * x^2 * y * z, -3 * y * z^2]$
+
+express(div(F))$
+diveF: ev(%, nouns)$
+
+express(grad(diveF))$
+graddivF: ev(%, nouns)$
+
+print("Divergence of given vector point function F is =", diveF)$
+print("Gradient (divergence F) is =", graddivF)$
+
+
+Verify the vector identity:
+Curl(Curl(F))=∇(div( F))−∇ 2F
+kill(all)$
+
+load("vect")$
+
+F: [3 * x * z^2, -y * z, x + 2 * z]$
+
+express(curl(F))$
+Curl_F: ev(%, nouns)$
+
+express(curl(Curl_F))$
+CurlCurl_F: ev(%, nouns)$
+
+print("Curl(Curl(F)) =", CurlCurl_F)$
+
+express(div(F))$
+div_F: ev(%, nouns)$
+
+express(grad(div_F))$
+graddiv_F: ev(%, nouns)$
+
+express(laplacian(F))$
+laplacian_F: ev(%, nouns)$
+
+RHS: graddiv_F - laplacian_F$
+print("grad(div F) - Laplacian(F) =", RHS)$
+
+print("Hence, Curl(Curl(F)) = grad(div F) - Laplacian(F)")$
+
+ 
+
